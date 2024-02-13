@@ -1,0 +1,81 @@
+                    <meta charset="utf-8" emacsmode="-*- markdown -*">
+                            **Assignment3 submission by Neha Marne**
+<Section>
+        
+        class prediction
+        ===============================================================================
+        **Testing accuracy** :0.9769150052465897
+        Correct output
+        -------------------------------------------------------------------------------
+        | input point cloud | ground truth class |predicted class|
+        |-------------------|--------------------|---------------|
+        |![](random_vis_356_with_gt_0_pred_0.gif)|chair |chair|
+        |![](random_vis_379_with_gt_0_pred_0.gif)|chair |chair|
+        |![](random_vis_717_with_gt_1_pred_1.gif)| vase |vase |
+        |![](random_vis_797_with_gt_2_pred_2.gif)|lamp  |lamp |
+        |![](random_vis_413_with_gt_0_pred_0.gif)|chair |chair|
+        
+        Incorrect output
+        -------------------------------------------------------------------------------
+        | input point cloud | ground truth class |predicted class|
+        |-------------------|--------------------|---------------|
+        |![](fail_vis_tensor406_with_gt_tensor0_pred_tensor2.gif)|chair|lamp|
+        |![](fail_vis_tensor618_with_gt_tensor1_pred_tensor2.gif)|vase|lamp|
+        |![](fail_vis_tensor787_with_gt_tensor2_pred_tensor1.gif)|lamp|vase|
+
+        Interpretation
+        -------------------------------------------------------------------------------
+        The overall performance of the classification model is satisfactory across the majority of scenarios, except for instances involving rare and ambiguous circumstances. 
+        For example, the model may struggle when distinguishing between a long-shaped chair that shares certain features with a lamp, a lamp that appears chair-like or vase-like, and a vase with defining boundaries resembling a chair. 
+        These instances of misclassification may arise from the model's emphasis on learning spatial relationships rather than the semantic nuances of each object's characteristics. 
+        Consequently, the model can be misled when confronted with such ambiguous cases.
+
+
+        segment prediction
+        ===============================================================================
+        Testing accuracy is :0.8036628849270665
+        Correct output
+        -------------------------------------------------------------------------------
+        | predicted class   | ground truth class |accuracy       |
+        |-------------------|--------------------|---------------|
+        |![](random_vis_289_pred_exp.gif) | ![](random_vis_289_gt_exp_acc09287.gif)|92.87%|
+        |![](random_vis_290_pred_exp.gif) | ![](random_vis_290_gt_exp_acc09717.gif)|97.17%|
+        |![](random_vis_291_pred_exp.gif) | ![](random_vis_291_gt_exp_acc09093.gif)|90.93%|
+        
+        Incorrect output
+        -------------------------------------------------------------------------------
+        | predicted class   | ground truth class |accuracy       |
+        |-------------------|--------------------|---------------|
+        |![](fail_vis_26_pred_exp.gif) | ![](fail_vis_26_gt_exp_acc05107.gif)|51.07%|
+        |![](fail_vis_32_pred_exp.gif) | ![](fail_vis_32_gt_exp_acc06844.gif)|97.17%|
+
+        Interpretation
+        -------------------------------------------------------------------------------
+        While the segmentation model generally performs well across most cases, there are instances of suboptimal performance.
+        Notably, challenges arise when dealing with significant overlaps between various sections of a sofa or when distinct parts lack clear separation. 
+        These scenarios pose difficulties for the model in accurately segmenting and identifying boundaries.
+
+        Section 3 Robustness analysis
+        ===============================================================================
+        Changing the number of points per object
+        -------------------------------------------------------------------------------
+        |number of points |ground truth|predicted|accuracy|
+        |-----------------|------------|---------|--------|
+        |10000|![](random_vis_4_gt_exp_acc0773.gif)|![](random_vis_4_pred_exp.gif)|77.3%|
+        |5000|![](5000_random_vis_4_gt_exp_acc07822.gif)|![](5000_random_vis_4_pred_exp.gif)|78.22|
+        |1000|![](1000_random_vis_4_gt_exp_acc0803.gif)|![](1000_random_vis_4_pred_exp.gif)|80.3|
+        |500|![](500_random_vis_4_gt_exp_acc0794.gif)|![](500_random_vis_4_pred_exp.gif)|79.4|
+        |100|![](100_fail_vis_4_gt_exp_acc065.gif)|![](100_fail_vis_4_pred_exp.gif)|65| 
+        Interpretation
+        -------------------------------------------------------------------------------
+        The results indicate that both the classification and segmentation models exhibit robustness even when the number of points is reduced. 
+        This resilience may be attributed to the fact that, despite a significant decrease in point size from 10,000 to 50, the sparse points remain capable of outlining approximate boundaries and surfaces of the objects. 
+        This ability proves beneficial for supporting the tasks of classification and segmentation.
+</Section>
+
+
+
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js?" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+
